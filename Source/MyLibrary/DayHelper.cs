@@ -10,6 +10,8 @@ namespace MyLibrary
         {
             if (input.Length == 0 ) {
                 return "";
+            } else if (input.Any(x => x < 1 ||  x > 31)) {
+                throw new InvalidDateException(nameof(input));
             } else if (input.Length == 1) {
                 return input.First().ToString();
             } else if  (input.Length > 1) {

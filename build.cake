@@ -1,10 +1,27 @@
 
+//#tool "nuget:?package=xunit.runner.console"
+//#tool "nuget:?package=xunit.runners&version=1.9.2"
+//#addin "nuget?package=Cake.Incubator"
+
 var solution = "MyApp.sln";
 var testProject = "Source/MyLibrary.Facts/MyLibrary.Facts.csproj";
 var libProject = "Soruce/MyLibrary/MyLibrary.csproj";
 
+
 Task("Tests").Does(() => {
+     var settings = new DotNetCoreTestSettings
+     {
+         Configuration = "Debug",
+         OutputDirectory = "build"
+     };
+
     DotNetCoreTest(testProject);
+    /*
+    DotNetCoreTest(testProject, new XUnit2Settings {
+        HtmlReport = true,
+        OutputDirectory = "./build"
+    });
+    */
 });
 
 Task("Restore").Does(() => {
@@ -18,6 +35,7 @@ Task("Watch-Test").Does(() => {
         WorkingDirectory = dir
     });
 });
+
 
 var target = Argument("target", "default");
 RunTarget(target);
