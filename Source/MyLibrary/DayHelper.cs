@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MyLibrary
 {
@@ -6,7 +8,14 @@ namespace MyLibrary
     {
         public string ToFrieldlyText(int[] input)
         {
-            throw new NotImplementedException();
+            if (input.Length == 0 ) {
+                return "";
+            } else if (input.Length == 1) {
+                return input.First().ToString();
+            } else if  (input.Length > 1) {
+                return input.First().ToString() + "-" + input.Last().ToString();
+            }
+            return "1";
         }
     }
 }
