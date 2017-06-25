@@ -1,9 +1,12 @@
 
 namespace MyLibrary {
     public class FillUp {
-        public FillUp() { }
+        public FillUp(int od, double li) {
+            Odometer = od;
+            Liters = li;
+         }
 
-        public FillUp  NextFilUp { set;get; }
+        public FillUp  NextFillUp { set;get; }
 
         public int Odometer { get; set; }
         public double Liters { get; set; }
@@ -11,9 +14,9 @@ namespace MyLibrary {
 
         public double? Kml { 
             get {
-                if(NextFilUp != null) {
-                    var r = NextFilUp.Odometer - Odometer;
-                    return  r / NextFilUp.Liters;
+                if(NextFillUp != null) {
+                    var r = NextFillUp.Odometer - Odometer;
+                    return  r / NextFillUp.Liters;
                 }
                 return null;
             }
